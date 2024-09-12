@@ -3,6 +3,8 @@ import { LoginPage } from '../pages/login-page';
 import { InventoryPage } from '../pages/inventory-page';
 import { CartPage } from '../pages/cart-page';
 import { CheckoutStepOnePage } from '../pages/checkout-step-one-page';
+import { CheckoutStepTwoPage } from '../pages/checkout-step-two-page';
+import { CheckoutCompletePage } from '../pages/checkout-complete-page';
 
 type Fixtures = {
   userData: Object;
@@ -10,6 +12,8 @@ type Fixtures = {
   inventoryPage: InventoryPage;
   cartPage: CartPage;
   checkoutStepOnePage: CheckoutStepOnePage;
+  checkoutStepTwoPage: CheckoutStepTwoPage;
+  checkoutCompletePage: CheckoutCompletePage;
 };
 
 export const test = base.extend<Fixtures>({
@@ -36,6 +40,16 @@ export const test = base.extend<Fixtures>({
   checkoutStepOnePage: async ({ page }, use) => {
     const checkoutStepOnePage = new CheckoutStepOnePage(page);
     await use(checkoutStepOnePage);
+  },
+
+  checkoutStepTwoPage: async ({ page }, use) => {
+    const checkoutStepTwoPage = new CheckoutStepTwoPage(page);
+    await use(checkoutStepTwoPage);
+  },
+
+  checkoutCompletePage: async ({ page }, use) => {
+    const checkoutCompletePage = new CheckoutCompletePage(page);
+    await use(checkoutCompletePage);
   },
 });
 

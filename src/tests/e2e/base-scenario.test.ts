@@ -6,7 +6,9 @@ test('Базовый сценарий пользователя', async ({
   loginPage, 
   inventoryPage, 
   cartPage, 
-  checkoutStepOnePage 
+  checkoutStepOnePage,
+  checkoutStepTwoPage,
+  checkoutCompletePage
 }) => {
   
   await test.step('Авторизация валидным пользователем', async () => {
@@ -44,8 +46,25 @@ test('Базовый сценарий пользователя', async ({
     expect(await cartPage.itemPrice.textContent()).toBe(userData['price']);
   });
 
-  await test.step('Переход на страницу ввода информации', async () => {
+  await test.step('Переход на страницу ввода данных доставки', async () => {
     await expect(cartPage.checkoutBtn).toBeVisible();
     checkoutStepOnePage = await cartPage.openCheckOutPage();
+    await expect(checkoutStepOnePage.heading).toBeVisible();
+  });
+
+  await test.step('Ввод данных доставки', async () => {
+    await checkoutStepOnePage.enterUserInfo('Test', 'User', '109111');
+  });
+
+  await test.step('Переход на страницу подтверждения доставки', async () => {
+    checkoutStepTwoPage = await checkoutStepOnePage.gotoStepTwo();
+    await expect(checkoutStepTwoPage.heading).toBeVisible();
+  });
+
+  await test.step('Подтверждение доставки', async () => {
+    await expect(checkoutStepTwoPage.finishBtn).toBeVisible();
+    checkoutCompletePage = await checkoutStepTwoPage.finishCheckout();
+    await expect(checkoutCompletePage.completeHeading).toBeVisible();
+    await expect(checkoutCompletePage.completeHeading).toHaveText('Thank you for your order!');
   });
 });
