@@ -1,0 +1,17 @@
+stages:
+  - test
+
+test:
+  stage: test
+  image: mcr.microsoft.com/playwright:v1.46.1-jammy
+  script:
+    - mkdir -p playwright-report
+    - echo "Install Dependencies"
+    - npm ci
+    - echo "Install browsers"
+    - npx playwright install
+    - echo "Run Tests"
+    - npx playwright test --reporter=list
+  artifacts:
+    paths:
+      - playwright-report/
