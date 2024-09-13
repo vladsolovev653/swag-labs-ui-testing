@@ -1,4 +1,5 @@
 import { Page } from '@playwright/test';
+import * as path from 'path';
 
 
 export abstract class BasePage {
@@ -22,5 +23,10 @@ export abstract class BasePage {
   public async open(): Promise<void> {
     await this.page.goto(this.url);
     await this.isLoaded();
+  }
+
+  public async screenshot(): Promise<void> {
+    const rootDir = path.resolve(__dirname);
+    await this.page.screenshot({ path: path.join(rootDir, 'playwright-report', 'screenshots') });
   }
 }

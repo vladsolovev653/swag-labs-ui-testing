@@ -2,6 +2,7 @@ import { test, expect } from '../fixtures';
 
 
 test('Базовый сценарий пользователя', async ({ 
+  page,
   userData, 
   loginPage, 
   inventoryPage, 
@@ -18,6 +19,7 @@ test('Базовый сценарий пользователя', async ({
     await loginPage.open();
     inventoryPage = await loginPage.login(username, password);
     await expect(inventoryPage.heading).toBeVisible();
+    await inventoryPage.screenshot();
   });
 
   await test.step('Добавление товара в корзину', async () => {
