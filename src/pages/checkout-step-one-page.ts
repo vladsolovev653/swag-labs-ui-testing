@@ -21,7 +21,7 @@ export class CheckoutStepOnePage extends BasePage {
     this.continueBtn = this.page.locator('input[data-test="continue"]');
   }
 
-  public async enterUserInfo(firstName: string, lastName: string, postalCode: string) {
+  public async enterUserInfo(firstName: string, lastName: string, postalCode: string): Promise<void> {
     await this.firstNameInput.fill(firstName);
     await this.lastNameInput.fill(lastName);
     await this.postalCodeInput.fill(postalCode);

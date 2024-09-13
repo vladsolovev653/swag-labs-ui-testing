@@ -11,6 +11,8 @@ export abstract class BasePage {
   }
 
   public async isLoaded(): Promise<void> {
+    await this.page.waitForLoadState('networkidle');
+    
     const currentPageTitle = await this.page.title();
     if (currentPageTitle !== this.title) {
       throw new Error(`Ожидаемое название страницы: ${this.title}, фактическое: ${currentPageTitle}`);
