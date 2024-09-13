@@ -27,6 +27,6 @@ export abstract class BasePage {
 
   public async screenshot(): Promise<void> {
     const rootDir = path.resolve(__dirname);
-    await this.page.screenshot({ path: path.join(rootDir, 'playwright-report', 'screenshots') });
+    await this.page.screenshot({ path: path.join(rootDir, 'playwright-report', 'screenshots', 'screenshot.png') });
   }
 }
