@@ -2,15 +2,14 @@ import { test, expect } from '../fixtures';
 
 
 test('Базовый сценарий пользователя', async ({ 
-  page,
-  userData, 
+  userData,
   loginPage, 
   inventoryPage, 
   cartPage, 
   checkoutStepOnePage,
   checkoutStepTwoPage,
   checkoutCompletePage
-}) => {
+}, testInfo) => {
   
   await test.step('Авторизация валидным пользователем', async () => {
     const username = process.env.STANDART_USER_LOGIN as string;
@@ -19,13 +18,14 @@ test('Базовый сценарий пользователя', async ({
     await loginPage.open();
     inventoryPage = await loginPage.login(username, password);
     await expect(inventoryPage.heading).toBeVisible();
-    await inventoryPage.screenshot();
+    await inventoryPage.screenshot(testInfo);
   });
 
   await test.step('Добавление товара в корзину', async () => {
     await inventoryPage.addBackpackBtn.click();
     await expect(inventoryPage.cartBadge).toBeVisible();
     await expect(inventoryPage.cartBadge).toHaveText('1');
+    await inventoryPage.screenshot(testInfo);
 
     userData['title'] = await inventoryPage.backpackTitle.textContent();
     userData['desc'] = await inventoryPage.backpackDesc.textContent();
@@ -38,6 +38,8 @@ test('Базовый сценарий пользователя', async ({
   });
 
   await test.step('Проверка товара', async () => {
+    await cartPage.screenshot(testInfo);
+
     await expect(cartPage.itemTitle).toBeVisible();
     expect(await cartPage.itemTitle.textContent()).toBe(userData['title']);
 
@@ -52,10 +54,12 @@ test('Базовый сценарий пользователя', async ({
     await expect(cartPage.checkoutBtn).toBeVisible();
     checkoutStepOnePage = await cartPage.openCheckOutPage();
     await expect(checkoutStepOnePage.heading).toBeVisible();
+    await checkoutStepOnePage.screenshot(testInfo);
   });
 
   await test.step('Ввод данных доставки', async () => {
     await checkoutStepOnePage.enterUserInfo('Test', 'User', '109111');
+    await checkoutStepOnePage.screenshot(testInfo);
   });
 
   await test.step('Переход на страницу подтверждения доставки', async () => {
