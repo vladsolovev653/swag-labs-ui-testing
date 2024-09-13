@@ -1,5 +1,6 @@
 stages:
   - test
+  - deploy
 
 test:
   stage: test
@@ -15,3 +16,15 @@ test:
   artifacts:
     paths:
       - playwright-report/
+    expire_in: 1 week
+
+pages:
+  stage: deploy
+  script:
+    - mkdir -p public
+    - cp -r playwright-report/* public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
