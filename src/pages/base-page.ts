@@ -11,7 +11,7 @@ export abstract class BasePage {
   }
 
   public async isLoaded(): Promise<void> {
-    await this.page.waitForURL(this.url);
+    await this.page.waitForURL(this.url, { waitUntil: 'load' });
     
     const currentPageTitle = await this.page.title();
     if (currentPageTitle !== this.title) {

@@ -65,6 +65,7 @@ test('Базовый сценарий пользователя', async ({
   await test.step('Переход на страницу подтверждения доставки', async () => {
     checkoutStepTwoPage = await checkoutStepOnePage.gotoStepTwo();
     await expect(checkoutStepTwoPage.heading).toBeVisible();
+    await checkoutStepTwoPage.screenshot(testInfo);
   });
 
   await test.step('Подтверждение доставки', async () => {
