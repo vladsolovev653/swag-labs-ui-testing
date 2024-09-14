@@ -1,4 +1,5 @@
 import { Page, TestInfo } from '@playwright/test';
+import { Utils } from '../utils/utils';
 
 
 export abstract class BasePage {
@@ -17,11 +18,6 @@ export abstract class BasePage {
     if (currentPageTitle !== this.title) {
       throw new Error(`Ожидаемое название страницы: ${this.title}, фактическое: ${currentPageTitle}`);
     }
-  }
-
-  public async screenshot(testInfo: TestInfo): Promise<void> {
-    const screenshot = await this.page.screenshot();
-    await testInfo.attach('screenshot', { body: screenshot, contentType: 'image/png' });
   }
 
   public async open(): Promise<void> {
