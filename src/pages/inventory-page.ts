@@ -3,6 +3,9 @@ import { BasePage } from './base-page';
 import { CartPage } from './cart-page';
 
 
+/**
+ * Страница с товарами
+ */
 export class InventoryPage extends BasePage {
   readonly heading: Locator;
   readonly cartBadge: Locator;
@@ -27,6 +30,11 @@ export class InventoryPage extends BasePage {
     this.backpackPrice = this.page.locator('//a[@data-test="item-4-title-link"]/ancestor::div[@class="inventory_item_label"]/following-sibling::div[@class="pricebar"]//div[@data-test="inventory-item-price"]');
   }
 
+
+  /**
+   * Переход в корзину
+   * @returns Экземпляр класса CartPage
+   */
   public async openCartPage(): Promise<CartPage> {
     await this.cartLink.click();
 

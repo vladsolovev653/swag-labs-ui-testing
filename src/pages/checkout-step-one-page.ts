@@ -3,6 +3,9 @@ import { BasePage } from "./base-page";
 import { CheckoutStepTwoPage } from "./checkout-step-two-page";
 
 
+/**
+ * Страница с вводом информации о доставке
+ */
 export class CheckoutStepOnePage extends BasePage {
   readonly heading: Locator;
   readonly firstNameInput: Locator;
@@ -21,12 +24,24 @@ export class CheckoutStepOnePage extends BasePage {
     this.continueBtn = this.page.locator('input[data-test="continue"]');
   }
 
+  
+  /**
+   * Ввод информации пользователя
+   * @param firstName Имя
+   * @param lastName Фамилия
+   * @param postalCode ZIP-код
+   */
   public async enterUserInfo(firstName: string, lastName: string, postalCode: string): Promise<void> {
     await this.firstNameInput.fill(firstName);
     await this.lastNameInput.fill(lastName);
     await this.postalCodeInput.fill(postalCode);
   }
 
+
+  /**
+   * Переход на страницу подтверждения заказа
+   * @returns Экземпляр класса CheckoutStepTwoPage
+   */
   public async gotoStepTwo(): Promise<CheckoutStepTwoPage> {
     await this.continueBtn.click();
 

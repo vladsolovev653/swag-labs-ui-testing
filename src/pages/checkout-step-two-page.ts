@@ -2,6 +2,10 @@ import { Locator, Page } from "@playwright/test";
 import { BasePage } from "./base-page";
 import { CheckoutCompletePage } from "./checkout-complete-page";
 
+
+/**
+ * Страница подтверждения заказа
+ */
 export class CheckoutStepTwoPage extends BasePage {
   readonly heading: Locator;
   readonly finishBtn: Locator;
@@ -14,6 +18,11 @@ export class CheckoutStepTwoPage extends BasePage {
     this.finishBtn = this.page.locator('button[data-test="finish"]');
   }
 
+
+  /**
+   * Подтверждение заказа
+   * @returns Экземпляр класса CheckoutCompletePage
+   */
   public async finishCheckout(): Promise<CheckoutCompletePage> {
     await this.finishBtn.click();
     

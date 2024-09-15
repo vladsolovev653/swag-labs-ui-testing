@@ -6,6 +6,7 @@ import { CheckoutStepOnePage } from '../pages/checkout-step-one-page';
 import { CheckoutStepTwoPage } from '../pages/checkout-step-two-page';
 import { CheckoutCompletePage } from '../pages/checkout-complete-page';
 
+
 type Fixtures = {
   userData: Object;
   loginPage: LoginPage;

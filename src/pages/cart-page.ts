@@ -3,6 +3,9 @@ import { BasePage } from "./base-page";
 import { CheckoutStepOnePage } from "./checkout-step-one-page";
 
 
+/**
+ * Класс страницы "Корзины"
+ */
 export class CartPage extends BasePage {
   readonly heading: Locator;
   readonly itemTitle: Locator;
@@ -21,6 +24,11 @@ export class CartPage extends BasePage {
     this.checkoutBtn = this.page.locator('#checkout');
   }
 
+
+  /**
+   * Открытие страницы ввода данных для доставки
+   * @returns Экзмепляр класса CheckoutStepOnePage
+   */
   async openCheckOutPage(): Promise<CheckoutStepOnePage> {
     await this.checkoutBtn.click();
 

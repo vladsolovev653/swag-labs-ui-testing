@@ -3,6 +3,9 @@ import { InventoryPage } from './inventory-page';
 import { BasePage } from './base-page';
 
 
+/**
+ * Страница Авторизации
+ */
 export class LoginPage extends BasePage {
   readonly usernameInput: Locator;
   readonly passwordInput: Locator;
@@ -17,6 +20,13 @@ export class LoginPage extends BasePage {
     this.loginBtn = this.page.locator('input[data-test="login-button"]');
   }
 
+
+  /**
+   * Авторизация
+   * @param username Имя пользователя 
+   * @param password Пароль
+   * @returns Экземпляр класса InventoryPage 
+   */
   public async login(username: string, password: string): Promise<InventoryPage> {
     await this.usernameInput.fill(username);
     await this.passwordInput.fill(password);
