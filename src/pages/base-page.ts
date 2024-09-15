@@ -1,5 +1,4 @@
-import { Page, TestInfo } from '@playwright/test';
-import { Utils } from '../utils/utils';
+import { Page } from '@playwright/test';
 
 
 export abstract class BasePage {

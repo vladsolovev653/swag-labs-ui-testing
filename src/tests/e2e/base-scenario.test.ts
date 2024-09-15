@@ -1,4 +1,4 @@
-import { Utils } from '../../utils/utils';
+import { screenshot } from '../../utils/screenshot';
 import { test, expect } from '../fixtures';
 
 
@@ -20,7 +20,7 @@ test('Базовый сценарий пользователя', async ({
     await loginPage.open();
     inventoryPage = await loginPage.login(username, password);
     await expect(inventoryPage.heading).toBeVisible();
-    await Utils.screenshot(page, testInfo);
+    await screenshot(page, testInfo);
   });
 
   await test.step('Добавление товара в корзину', async () => {
@@ -31,13 +31,13 @@ test('Базовый сценарий пользователя', async ({
     userData['title'] = await inventoryPage.backpackTitle.textContent();
     userData['desc'] = await inventoryPage.backpackDesc.textContent();
     userData['price'] = await inventoryPage.backpackPrice.textContent();
-    await Utils.screenshot(page, testInfo);
+    await screenshot(page, testInfo);
   });
 
   await test.step('Переход в Коризну', async () => {
     cartPage = await inventoryPage.openCartPage();
     await expect(cartPage.heading).toBeVisible();
-    await Utils.screenshot(page, testInfo);
+    await screenshot(page, testInfo);
   });
 
   await test.step('Проверка товара', async () => {
@@ -55,18 +55,18 @@ test('Базовый сценарий пользователя', async ({
     await expect(cartPage.checkoutBtn).toBeVisible();
     checkoutStepOnePage = await cartPage.openCheckOutPage();
     await expect(checkoutStepOnePage.heading).toBeVisible();
-    await Utils.screenshot(page, testInfo);
+    await screenshot(page, testInfo);
   });
 
   await test.step('Ввод данных доставки', async () => {
     await checkoutStepOnePage.enterUserInfo('Test', 'User', '109111');
-    await Utils.screenshot(page, testInfo);
+    await screenshot(page, testInfo);
   });
 
   await test.step('Переход на страницу подтверждения доставки', async () => {
     checkoutStepTwoPage = await checkoutStepOnePage.gotoStepTwo();
     await expect(checkoutStepTwoPage.heading).toBeVisible();
-    await Utils.screenshot(page, testInfo);
+    await screenshot(page, testInfo);
   });
 
   await test.step('Подтверждение доставки', async () => {
