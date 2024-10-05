@@ -4,7 +4,7 @@ import { CartPage } from './cart-page';
 
 
 /**
- * Страница с товарами
+ * Страница с товарами.
  */
 export class InventoryPage extends BasePage {
   readonly heading: Locator;
@@ -32,8 +32,8 @@ export class InventoryPage extends BasePage {
 
 
   /**
-   * Переход в корзину
-   * @returns Экземпляр класса CartPage
+   * Переход в корзину.
+   * @returns Экземпляр класса CartPage.
    */
   public async openCartPage(): Promise<CartPage> {
     await this.cartLink.click();

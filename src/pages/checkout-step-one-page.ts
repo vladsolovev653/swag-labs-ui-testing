@@ -4,7 +4,7 @@ import { CheckoutStepTwoPage } from "./checkout-step-two-page";
 
 
 /**
- * Страница с вводом информации о доставке
+ * Страница с вводом информации о доставке.
  */
 export class CheckoutStepOnePage extends BasePage {
   readonly heading: Locator;
@@ -26,7 +26,7 @@ export class CheckoutStepOnePage extends BasePage {
 
   
   /**
-   * Ввод информации пользователя
+   * Ввод информации пользователя.
    * @param firstName Имя
    * @param lastName Фамилия
    * @param postalCode ZIP-код
@@ -39,8 +39,8 @@ export class CheckoutStepOnePage extends BasePage {
 
 
   /**
-   * Переход на страницу подтверждения заказа
-   * @returns Экземпляр класса CheckoutStepTwoPage
+   * Переход на страницу подтверждения заказа.
+   * @returns Экземпляр класса CheckoutStepTwoPage.
    */
   public async gotoStepTwo(): Promise<CheckoutStepTwoPage> {
     await this.continueBtn.click();

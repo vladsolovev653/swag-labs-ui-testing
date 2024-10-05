@@ -4,7 +4,7 @@ import { CheckoutCompletePage } from "./checkout-complete-page";
 
 
 /**
- * Страница подтверждения заказа
+ * Страница подтверждения заказа.
  */
 export class CheckoutStepTwoPage extends BasePage {
   readonly heading: Locator;
@@ -20,8 +20,8 @@ export class CheckoutStepTwoPage extends BasePage {
 
 
   /**
-   * Подтверждение заказа
-   * @returns Экземпляр класса CheckoutCompletePage
+   * Подтверждение заказа.
+   * @returns Экземпляр класса CheckoutCompletePage.
    */
   public async finishCheckout(): Promise<CheckoutCompletePage> {
     await this.finishBtn.click();

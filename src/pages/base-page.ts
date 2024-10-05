@@ -1,9 +1,8 @@
-import { Page } from '@playwright/test';
-
+import { Page, expect } from '@playwright/test';
 
 /**
- * Класс базовой страницы
- * Не используется напрямую
+ * Класс базовой страницы.
+ * Не используется напрямую.
  */
 export abstract class BasePage {
   readonly page: Page;
@@ -16,21 +15,17 @@ export abstract class BasePage {
 
   
   /**
-   * Проверка, что страница загружена 
-   * Ждет url страницы и проверяет название 
+   * Проверяет, что страница успешно загружена.
+   * Ждет URL страницы и проверяет название.
    */
   public async isLoaded(): Promise<void> {
     await this.page.waitForURL(this.url, { waitUntil: 'load' });
-    
-    const currentPageTitle = await this.page.title();
-    if (currentPageTitle !== this.title) {
-      throw new Error(`Ожидаемое название страницы: ${this.title}, фактическое: ${currentPageTitle}`);
-    }
+    await expect(this.page).toHaveTitle(this.title);
   }
 
   
   /**
-   * Открывает страницу и проверяет успешно загрузки
+   * Открытие страницы и проверка успешной загрузки.
    */
   public async open(): Promise<void> {
     await this.page.goto(this.url);

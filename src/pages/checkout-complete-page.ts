@@ -3,7 +3,7 @@ import { BasePage } from "./base-page";
 
 
 /**
- * Страница успешного подтверждения заказа
+ * Страница успешного подтверждения заказа.
  */
 export class CheckoutCompletePage extends BasePage {
   readonly completeHeading: Locator;

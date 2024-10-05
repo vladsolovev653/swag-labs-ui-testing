@@ -4,7 +4,7 @@ import { BasePage } from './base-page';
 
 
 /**
- * Страница Авторизации
+ * Страница Авторизации.
  */
 export class LoginPage extends BasePage {
   readonly usernameInput: Locator;
@@ -22,10 +22,10 @@ export class LoginPage extends BasePage {
 
 
   /**
-   * Авторизация
+   * Авторизация.
    * @param username Имя пользователя 
    * @param password Пароль
-   * @returns Экземпляр класса InventoryPage 
+   * @returns Экземпляр класса InventoryPage.
    */
   public async login(username: string, password: string): Promise<InventoryPage> {
     await this.usernameInput.fill(username);
